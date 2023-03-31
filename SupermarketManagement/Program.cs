@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Plugins.DataStore.InMemory;
 using SupermarketManagement.Data;
+using UseCases;
+using UseCases.UseCaseInterfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+//Dependency Injection for in-memory data
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+//Dep. Injection for use cases and repos
+builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();
 
 var app = builder.Build();
 
@@ -29,3 +36,15 @@ app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
 app.Run();
+
+
+/*
+ * Admins:
+ * - Manage categories
+ * - Manage products
+ * - Manage sellers
+ * 
+ * Sellers:
+ * Selling console
+ * 
+ */
