@@ -16,6 +16,7 @@
 				<th>
 					Description
 				</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,13 +25,14 @@
 				<tr>
 					<td>@category.Name</td>
 					<td>@category.Description</td>
+					<td><button type="button" @onclick="@(EditCategory(category))">Edit</button></td>
 				</tr>
 			}
 		</tbody>
 	</table>
 }
 <br/>
-<button type="button" @onclick="OnClickAddCategory">Add Category</button>
+<button type="button" @onclick="OnClickAddCategory" class="btn btn-primary">Add Category</button>
 
 
 @code {
@@ -46,5 +48,10 @@
 	{
 		//Use to navigate to different razor pages
 		NavigationManager.NavigateTo("/addcategory");
+	}
+
+	private void EditCategory(Category category)
+	{
+		NavigationManager.NavigateTo($"/editcategory/{category.ID}");
 	}
 }

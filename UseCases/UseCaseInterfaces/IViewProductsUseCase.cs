@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace UseCases
 {
-    public interface IViewCategoriesUseCase
+    public interface IViewProductsUseCase
     {
-        IEnumerable<Category> Execute();
+        IEnumerable<Product> Execute();
     }
 }
